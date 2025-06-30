@@ -13,10 +13,12 @@ class GameWindow(QWidget):
         self.layout = QVBoxLayout()
         self.status = QLabel("Choose your move")
         self.score_label = QLabel("Your Score: Loading...")
+        self.rock = QPushButton("🪨Rock🪨")
+        self.paper = QPushButton("📃Paper📃")
+        self.scissors = QPushButton("✂️Scissors✂️")
 
-        self.rock = QPushButton("Rock")
-        self.paper = QPushButton("Paper")
-        self.scissors = QPushButton("Scissors")
+        # Remove yellow focus border from scissors button
+        self.scissors.setFocusPolicy(False)
 
         self.rock.setStyleSheet("background-color: lightblue;font-weight: bold;")
         self.paper.setStyleSheet("background-color: lightblue;font-weight: bold;")
