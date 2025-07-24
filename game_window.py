@@ -36,6 +36,9 @@ class GameWindow(QWidget):
 
     def get_score(self):
         data = db.child("users").child(self.uid).get().val()
+        if data is None:
+            self.score_label.setText("Your Score: 0 (no data found)")
+            return
         score = data.get("score", 0)
         self.score_label.setText(f"Your Score: {score}")
 
@@ -81,5 +84,7 @@ class GameWindow(QWidget):
 
     def update_score(self):
         score = db.child("users").child(self.uid).child("score").get().val()
+        if score is None:
+            score = 0
         db.child("users").child(self.uid).update({"score": score + 1})
         self.get_score()
